@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Script hosting
+#Allow .htaccess files their full powerAllowOverride All
+
+#Hidden PHP
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+#Hidden HTML
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+
+#Error 404
+ErrorDocument 404 /arsip/404/
+
+#Error 403
+ErrorDocument 403 /arsip/403/
+
+#Redirect Maintenance
+#RedirectMatch ^/$ /maintenance
+
+#Redirect URL
+#RedirectMatch 301 /aa/(.*) https://
+
+<Files .htaccess>
+order allow,deny
+allow from all
+</Files>
+Options All -Indexes
+</IfModule>
